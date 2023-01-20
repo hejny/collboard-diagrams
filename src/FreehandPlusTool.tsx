@@ -1,0 +1,94 @@
+// Note: We are using library destroyable and xyzt which is published under @hejny (creator of Collboard) but probbly it should be also published under @collboard to make clear that it is an integral part of Collboard stack.
+import { React, Separator, ToolbarName, declareModule, makeIconModuleOnModule } from '@collboard/modules-sdk';
+import { Registration } from 'destroyable';
+import { contributors, description, license, repository, version } from '../package.json';
+import { FreehandPlusArt } from './FreehandPlusArt';
+
+declareModule(
+    makeIconModuleOnModule({
+        manifest: {
+            name: '@hejny/collboard-diagrams-tool',
+            version,
+            description,
+            contributors,
+            license,
+            repository,
+            title: { en: 'Drawing of dotted and dashed lines and arrows', cs: 'Kreslení přerušovaných čar a šipek' },
+            categories: ['Basic', 'Art'],
+            keywords: [
+                'šipky',
+                'spoje',
+                'grafy',
+                'connections',
+                'arrows',
+                'lines',
+                'dashed',
+                'dotted',
+                'freehand',
+                'drawing',
+            ],
+            icon: '✒️',
+        },
+        toolbar: ToolbarName.Tools,
+        async icon(systems) {
+            const { attributesSystem } = await systems.request('attributesSystem');
+            return {
+                section: 2,
+                icon: '✒️',
+                boardCursor: 'crosshair',
+                menu: () => (
+                    <>
+                        {attributesSystem.inputRender('weight')}
+                        <Separator />
+                        {attributesSystem.inputRender('color')}
+                        <Separator />
+                        {attributesSystem.inputRender('dashpattern')}
+                    </>
+                ),
+            };
+        },
+        moduleActivatedByIcon: {
+            async setup(systems) {
+                const { touchController, appState, attributesSystem, materialArtVersioningSystem, collSpace } =
+                    await systems.request(
+                        'touchController',
+                        'appState',
+                        'attributesSystem',
+                        'materialArtVersioningSystem',
+                        'collSpace',
+                    );
+
+                return Registration.fromSubscription((registerAdditionalSubscription) =>
+                    touchController.touches.subscribe({
+                        next: (touch) => {
+                            appState.cancelSelection();
+
+                            // TODO: On dashpattern = solid make classical freehand art (and figure out how to import it here).
+                            const artInProcess = new FreehandPlusArt(
+                                [],
+                                attributesSystem.getAttributeValue('color').value as string,
+                                attributesSystem.getAttributeValue('dashpattern').value as string,
+                                attributesSystem.getAttributeValue('weight').value as number,
+                            );
+
+                            const operation = materialArtVersioningSystem.createPrimaryOperation();
+                            operation.newArts(artInProcess);
+
+                            registerAdditionalSubscription(
+                                touch.frames.subscribe({
+                                    async next(touchFrame) {
+                                        artInProcess.path.push((await collSpace.pickPoint(touchFrame.position)).point);
+                                        operation.update(artInProcess);
+                                    },
+                                    complete() {
+                                        operation.persist();
+                                    },
+                                }),
+                            );
+                        },
+                    }),
+                );
+            },
+        },
+    }),
+);
