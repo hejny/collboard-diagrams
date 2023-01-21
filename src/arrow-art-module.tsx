@@ -1,8 +1,14 @@
-import { declareModule, makeFunctionalArtModule } from '@collboard/modules-sdk';
+import { IAppearance, ISystems, React, declareModule, makeFunctionalArtModule } from '@collboard/modules-sdk';
 import { contributors, description, license, repository, version } from '../package.json';
 
+interface ArrowShape {}
+
+interface ArrowAppearance extends IAppearance {
+    // TODO:
+}
+
 declareModule(
-  makeFunctionalArtModule({
+    makeFunctionalArtModule<ArrowShape, ArrowAppearance>({
         manifest: {
             name: '@collboard-templates/freehand-with-dashpattern-tool',
             version,
@@ -18,8 +24,18 @@ declareModule(
             },
         },
 
- // TODO: !!! Implement
+        createArt(artData) {
+            const { shape, appearance, transform } = artData;
 
-
-
-        });
+            return {
+                shape,
+                appearance,
+                transform,
+                render(isSelected: boolean, systems: ISystems) {
+                    // TODO: !!! Implement
+                    return <></>;
+                },
+            };
+        },
+    }),
+);

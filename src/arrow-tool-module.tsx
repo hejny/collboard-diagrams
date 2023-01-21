@@ -1,4 +1,4 @@
-import { declareModule, makeIconModuleOnModule, React, Separator, ToolbarName } from '@collboard/modules-sdk';
+import { React, Separator, ToolbarName, declareModule, makeIconModuleOnModule } from '@collboard/modules-sdk';
 import { Registration } from 'destroyable';
 import { contributors, description, license, repository, version } from '../package.json';
 import { FreehandWithDashpatternArt } from './-arrow-art-module';
@@ -50,7 +50,7 @@ declareModule(
                         'collSpace',
                     );
 
-                    // TODO: !!! Reimplement
+                // TODO: !!! Reimplement
 
                 return Registration.fromSubscription((registerAdditionalSubscription) =>
                     touchController.touches.subscribe({
