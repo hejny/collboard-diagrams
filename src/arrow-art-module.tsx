@@ -1,4 +1,4 @@
-import { IAppearance, ISystems, React, declareModule, makeFunctionalArtModule } from '@collboard/modules-sdk';
+import { declareModule, IAppearance, ISystems, makeFunctionalArtModule, React } from '@collboard/modules-sdk';
 import { contributors, description, license, repository, version } from '../package.json';
 
 interface ArrowShape {}

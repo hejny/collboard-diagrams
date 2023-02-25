@@ -1,4 +1,4 @@
-import { React, Separator, ToolbarName, declareModule, makeIconModuleOnModule } from '@collboard/modules-sdk';
+import { declareModule, makeIconModuleOnModule, React, Separator, ToolbarName } from '@collboard/modules-sdk';
 import { Registration } from 'destroyable';
 import { contributors, description, license, repository, version } from '../package.json';
 import { FreehandWithDashpatternArt } from './-arrow-art-module';

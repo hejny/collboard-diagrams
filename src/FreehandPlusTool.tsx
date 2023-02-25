@@ -1,5 +1,5 @@
 // Note: We are using library destroyable and xyzt which is published under @hejny (creator of Collboard) but probbly it should be also published under @collboard to make clear that it is an integral part of Collboard stack.
-import { React, Separator, ToolbarName, declareModule, makeIconModuleOnModule } from '@collboard/modules-sdk';
+import { declareModule, makeIconModuleOnModule, React, Separator, ToolbarName } from '@collboard/modules-sdk';
 import { Registration } from 'destroyable';
 import { contributors, description, license, repository, version } from '../package.json';
 import { FreehandPlusArt } from './FreehandPlusArt';

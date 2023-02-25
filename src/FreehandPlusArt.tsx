@@ -1,4 +1,4 @@
-import { Abstract2dArt, React, classNames, declareModule, makeArtModule } from '@collboard/modules-sdk';
+import { Abstract2dArt, classNames, declareModule, makeArtModule, React } from '@collboard/modules-sdk';
 import { IVectorData, Vector } from 'xyzt';
 import { contributors, description, license, repository, version } from '../package.json';
 import { DASHPATTERNS } from './DashpatternAttribute';
