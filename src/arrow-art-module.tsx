@@ -1,13 +1,16 @@
 import { declareModule, IAppearance, ISystems, makeFunctionalArtModule, React } from '@collboard/modules-sdk';
 import { contributors, description, license, repository, version } from '../package.json';
 
+// tslint:disable-next-line
 interface ArrowShape {}
 
+// tslint:disable-next-line
 interface ArrowAppearance extends IAppearance {
     // TODO:
 }
 
 declareModule(
+    // tslint:disable-next-line
     makeFunctionalArtModule<ArrowShape, ArrowAppearance>({
         manifest: {
             name: '@collboard-templates/freehand-with-dashpattern-tool',
