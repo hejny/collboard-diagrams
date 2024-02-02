@@ -1,3 +1,3 @@
 module.exports = {
-    ignoreWorkflows: ['preversion'] /* <- TODO: !!! Remove when this module is working */,
+    ignoreWorkflows: ['publishPatchVersion'] /* <- TODO: !!! Remove when this module is working */,
 };
