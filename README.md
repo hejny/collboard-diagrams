@@ -9,6 +9,7 @@
 [![test](https://github.com/hejny/collboard-diagrams/actions/workflows/test.yml/badge.svg)](https://github.com/hejny/collboard-diagrams/actions/workflows/test.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/hejny/collboard-diagrams/badge.svg)](https://snyk.io/test/github/hejny/collboard-diagrams)
 [![Issues](https://img.shields.io/github/issues/hejny/collboard-diagrams.svg?style=flat)](https://github.com/hejny/collboard-diagrams/issues)
+<!--[![Socket](https://socket.dev/api/badge/npm/package/@hejny/collboard-diagrams)](https://socket.dev/npm/package/@hejny/collboard-diagrams)-->
 
 <!--/Badges-->
 
